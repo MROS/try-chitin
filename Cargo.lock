@@ -63,7 +63,7 @@ checksum = "4785bdd1c96b2a846b2bd7cc02e86b6b3dbf14e7e53446c4f54c92a361040822"
 [[package]]
 name = "chitin"
 version = "0.1.0"
-source = "git+https://github.com/carbon-bond/chitin#dd194e5f98e433894b3bc4434c0a10cb3ae383b1"
+source = "git+https://github.com/carbon-bond/chitin#2f4e4367d8b852bda0199317a10eb28876bbe71e"
 dependencies = [
  "chitin_core",
  "chitin_derive",
@@ -72,7 +72,7 @@ dependencies = [
 [[package]]
 name = "chitin_core"
 version = "0.1.0"
-source = "git+https://github.com/carbon-bond/chitin#dd194e5f98e433894b3bc4434c0a10cb3ae383b1"
+source = "git+https://github.com/carbon-bond/chitin#2f4e4367d8b852bda0199317a10eb28876bbe71e"
 dependencies = [
  "Inflector",
  "proc-macro2",
@@ -83,9 +83,20 @@ dependencies = [
 [[package]]
 name = "chitin_derive"
 version = "0.1.0"
-source = "git+https://github.com/carbon-bond/chitin#dd194e5f98e433894b3bc4434c0a10cb3ae383b1"
+source = "git+https://github.com/carbon-bond/chitin#2f4e4367d8b852bda0199317a10eb28876bbe71e"
 dependencies = [
  "chitin_core",
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "derive-new"
+version = "0.5.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "71f31892cd5c62e414316f2963c5689242c43d8e7bbcaaeca97e5e28c95d91d9"
+dependencies = [
  "proc-macro2",
  "quote",
  "syn",
@@ -293,9 +304,11 @@ version = "0.1.0"
 dependencies = [
  "async-trait",
  "chitin",
+ "derive-new",
  "futures",
  "futures-util",
  "hyper",
+ "lazy_static",
  "serde",
  "serde_json",
  "tokio",
@@ -321,9 +334,9 @@ dependencies = [
 
 [[package]]
 name = "itoa"
-version = "0.4.5"
+version = "0.4.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b8b7a7c0c47db5545ed3fef7468ee7bb5b74691498139e4b3f6a20685dc6dd8e"
+checksum = "dc6f3ad7b9d11a0c00842ff8de1b60ee58661048eb8049ed33c73594f359d7e6"
 
 [[package]]
 name = "kernel32-sys"

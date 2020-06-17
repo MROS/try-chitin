@@ -9,9 +9,9 @@ use std::io::prelude::*;
 
 fn main() -> std::io::Result<()> {
     let mut file = File::create("src/api_trait.rs")?;
-    file.write_all(b"use async_trait::async_trait;")?;
-    file.write_all(b"use crate::query::*;")?;
-    file.write_all(b"use serde_json::error::Error;")?;
+    file.write_all(b"use async_trait::async_trait;\n")?;
+    file.write_all(b"use crate::query::*;\n")?;
+    file.write_all(b"use serde_json::error::Error;\n")?;
     file.write_all(RootQuery::codegen(&CodegenOption::Server).as_bytes())?;
 
     // let args: Vec<_> = std::env::args().collect();
