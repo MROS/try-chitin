@@ -44,6 +44,13 @@ async fn echo(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
             Ok(Response::new(Body::from(reversed_body)))
         }
 
+        (&Method::POST, "/api") => {
+            let whole_body = hyper::body::to_bytes(req.into_body()).await?;
+
+            let reversed_body = whole_body.iter().rev().cloned().collect::<Vec<u8>>();
+            Ok(Response::new(Body::from(reversed_body)))
+        }
+
         // Return the 404 Not Found for other routes.
         _ => {
             let mut not_found = Response::default();

@@ -8,11 +8,14 @@ use std::fs::File;
 use std::io::prelude::*;
 
 fn main() -> std::io::Result<()> {
-    let mut file = File::create("src/api_trait.rs")?;
-    file.write_all(b"use async_trait::async_trait;\n")?;
-    file.write_all(b"use crate::query::*;\n")?;
-    file.write_all(b"use serde_json::error::Error;\n")?;
-    file.write_all(RootQuery::codegen(&CodegenOption::Server).as_bytes())?;
+    let mut server_file = File::create("src/api_trait.rs")?;
+    server_file.write_all(b"use async_trait::async_trait;\n")?;
+    server_file.write_all(b"use crate::query::*;\n")?;
+    server_file.write_all(b"use serde_json::error::Error;\n")?;
+    server_file.write_all(RootQuery::codegen(&CodegenOption::Server).as_bytes())?;
+
+    let mut client_file = File::create("client/api_trait.ts")?;
+    client_file.write_all(RootQuery::codegen(&CodegenOption::Client).as_bytes())?;
 
     // let args: Vec<_> = std::env::args().collect();
     // if args[1] == "server" {
