@@ -6,7 +6,19 @@ type Result<T, E> = {
     value: E
 };
 
-abstract class RootQueryFetcher {
+type Article = {
+    author_id: number,
+    title: string,
+    content: string,
+}
+
+type User = {
+    name: string,
+    sentence: string,
+}
+
+
+export abstract class RootQueryFetcher {
     abstract fetchResult(query: Object): Promise<string>;
     async askArticles(count: number): Promise<Result<Array<Article>, string>> {
         return JSON.parse(await this.fetchResult({ "AskArticles": { count } }));
