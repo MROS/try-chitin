@@ -15,6 +15,16 @@ fn main() -> std::io::Result<()> {
     server_file.write_all(RootQuery::codegen(&CodegenOption::Server).as_bytes())?;
 
     let mut client_file = File::create("client/api_trait.ts")?;
+    client_file.write_all(
+        b"export type Result<T, E> = {
+    kind: 'ok',
+    value: T
+} | {
+    kind: 'err',
+    value: E
+};\n",
+    )?;
+    client_file.write_all(model::gen_typescript().as_bytes())?;
     client_file.write_all(RootQuery::codegen(&CodegenOption::Client).as_bytes())?;
 
     // let args: Vec<_> = std::env::args().collect();

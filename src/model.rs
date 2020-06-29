@@ -1,14 +1,21 @@
-use serde::{Deserialize, Serialize};
+use chitin::*;
 
-#[derive(Serialize, Deserialize, Clone)]
-pub struct Article {
-    pub author_id: i32,
-    pub title: String,
-    pub content: String,
+#[chitin_model]
+mod model {
+    use serde::{Deserialize, Serialize};
+    use typescript_definitions::{TypeScriptify, TypeScriptifyTrait};
+    #[derive(Serialize, Deserialize, TypeScriptify, Clone)]
+    pub struct Article {
+        pub author_id: i32,
+        pub title: String,
+        pub content: String,
+    }
+
+    #[derive(Serialize, Deserialize, TypeScriptify, Clone)]
+    pub struct User {
+        pub name: String,
+        pub sentence: String,
+    }
 }
 
-#[derive(Serialize, Deserialize, Clone)]
-pub struct User {
-    pub name: String,
-    pub sentence: String,
-}
+pub use model::*;

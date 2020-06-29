@@ -1,3 +1,12 @@
+export type Result<T, E> = {
+    kind: 'ok',
+    value: T
+} | {
+    kind: 'err',
+    value: E
+};
+export type Article = { author_id: number; title: string; content: string };
+export type User = { name: string; sentence: string };
 abstract class RootQueryFetcher {
     abstract fetchResult(query: Object): Promise<string>;
     async askArticles(count: number): Promise<Result<Array<Article>, string>> {
@@ -9,7 +18,7 @@ abstract class RootQueryFetcher {
     async askUserArticles(count: number, user_id: number): Promise<Result<Array<Article>, string>> {
         return JSON.parse(await this.fetchResult({ "User": { "AskUserArticles": { count, user_id } } }));
     }
-    async askUserDetail(user_id: number): Promise<Result<(User, string), string>> {
+    async askUserDetail(user_id: number): Promise<Result<[User, string], string>> {
         return JSON.parse(await this.fetchResult({ "User": { "UserDetail": { "AskUserDetail": { user_id } } } }));
     }
 }
