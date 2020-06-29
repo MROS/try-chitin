@@ -24,17 +24,5 @@ fn main() -> std::io::Result<()> {
     )?;
     client_file.write_all(model::gen_typescript().as_bytes())?;
     client_file.write_all(RootQuery::codegen(&CodegenOption::Client).as_bytes())?;
-
-    // let args: Vec<_> = std::env::args().collect();
-    // if args[1] == "server" {
-    //     println!("use async_trait::async_trait;");
-    //     println!("use crate::query::*;");
-    //     println!("use serde_json::error::Error;");
-    //     println!("{}",);
-    // } else if args[1] == "client" {
-    //     println!("{}", RootQuery::codegen(&CodegenOption::Client));
-    // } else {
-    //     panic!("未知的指令：{}", args[1]);
-    // }
     Ok(())
 }
