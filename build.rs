@@ -17,11 +17,9 @@ fn main() -> std::io::Result<()> {
     let mut client_file = File::create("client/api_trait.ts")?;
     client_file.write_all(
         b"export type Result<T, E> = {
-    kind: 'ok',
-    value: T
+    'Ok': T
 } | {
-    kind: 'err',
-    value: E
+    'Err': E
 };\n",
     )?;
     client_file.write_all(model::gen_typescript().as_bytes())?;

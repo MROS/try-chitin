@@ -2,22 +2,22 @@ use crate::api_trait::*;
 // use crate::query::*;
 use async_trait::async_trait;
 
-#[derive(new)]
-struct UserDetail {}
+#[derive(Default)]
+pub struct UserDetail {}
 
 #[async_trait]
 impl UserDetailQueryRouter for UserDetail {
-    async fn ask_user_detail(&self, user_id: i32) -> Result<(crate::model::User, String), String> {
+    async fn ask_user_detail(&self, user_id: i32) -> Result<crate::model::User, String> {
         let users = crate::USERS.lock().unwrap();
         match users.get(&user_id) {
-            Some(user) => Ok((user.clone(), user.name.to_string())),
+            Some(user) => Ok(user.clone()),
             None => Err("無此 id".to_owned()),
         }
     }
 }
 
-#[derive(new)]
-struct UserQuery {
+#[derive(Default)]
+pub struct UserQuery {
     user_detail: UserDetail,
 }
 
@@ -42,8 +42,8 @@ impl UserQueryRouter for UserQuery {
     }
 }
 
-#[derive(new)]
-struct RootQuery {
+#[derive(Default)]
+pub struct RootQuery {
     user_query: UserQuery,
 }
 
@@ -58,6 +58,12 @@ impl RootQueryRouter for RootQuery {
         let mut articles = crate::ARTICLES.lock().unwrap();
         articles.push(article);
         Ok(())
+    }
+    async fn create_user(&self, user: crate::model::User) -> Result<i32, String> {
+        let mut users = crate::USERS.lock().unwrap();
+        let id = users.len() as i32;
+        users.insert(id, user);
+        Ok(id)
     }
     fn user_router(&self) -> &Self::UserQueryRouter {
         &self.user_query

@@ -134,7 +134,7 @@ checksum = "4785bdd1c96b2a846b2bd7cc02e86b6b3dbf14e7e53446c4f54c92a361040822"
 [[package]]
 name = "chitin"
 version = "0.1.0"
-source = "git+https://github.com/carbon-bond/chitin#78ded56575317e96f237978cddda4a59a4605907"
+source = "git+https://github.com/carbon-bond/chitin#bba4e9248dc703c7968517ee9361c4f1019258c2"
 dependencies = [
  "chitin_core",
  "chitin_derive",
@@ -144,7 +144,7 @@ dependencies = [
 [[package]]
 name = "chitin_core"
 version = "0.1.0"
-source = "git+https://github.com/carbon-bond/chitin#78ded56575317e96f237978cddda4a59a4605907"
+source = "git+https://github.com/carbon-bond/chitin#bba4e9248dc703c7968517ee9361c4f1019258c2"
 dependencies = [
  "Inflector",
  "proc-macro2 1.0.18",
@@ -155,7 +155,7 @@ dependencies = [
 [[package]]
 name = "chitin_derive"
 version = "0.1.0"
-source = "git+https://github.com/carbon-bond/chitin#78ded56575317e96f237978cddda4a59a4605907"
+source = "git+https://github.com/carbon-bond/chitin#bba4e9248dc703c7968517ee9361c4f1019258c2"
 dependencies = [
  "chitin_core",
  "proc-macro2 1.0.18",
@@ -166,18 +166,7 @@ dependencies = [
 [[package]]
 name = "chitin_model"
 version = "0.1.0"
-source = "git+https://github.com/carbon-bond/chitin#78ded56575317e96f237978cddda4a59a4605907"
-dependencies = [
- "proc-macro2 1.0.18",
- "quote 1.0.7",
- "syn 1.0.33",
-]
-
-[[package]]
-name = "derive-new"
-version = "0.5.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "71f31892cd5c62e414316f2963c5689242c43d8e7bbcaaeca97e5e28c95d91d9"
+source = "git+https://github.com/carbon-bond/chitin#bba4e9248dc703c7968517ee9361c4f1019258c2"
 dependencies = [
  "proc-macro2 1.0.18",
  "quote 1.0.7",
@@ -1019,7 +1008,6 @@ version = "0.1.0"
 dependencies = [
  "async-trait",
  "chitin",
- "derive-new",
  "futures",
  "futures-util",
  "hyper",
